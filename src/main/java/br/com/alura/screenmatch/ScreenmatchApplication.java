@@ -1,5 +1,6 @@
 package br.com.alura.screenmatch;
 
+import br.com.alura.screenmatch.model.DataEpe;
 import br.com.alura.screenmatch.model.DataSeries;
 import br.com.alura.screenmatch.service.APIConsumption;
 import br.com.alura.screenmatch.service.CovertData;
@@ -21,7 +22,12 @@ public class ScreenmatchApplication implements CommandLineRunner {
 		System.out.println("Dados dos json: " +json);
 
 		CovertData conversor = new CovertData();
-		DataSeries dados = conversor.getData(json, DataSeries.class);
-		System.out.println("Dados formatados" + dados);
+		DataSeries dadosSeries = conversor.getData(json, DataSeries.class);
+		System.out.println("Dados formatados " + dadosSeries);
+
+		json = apiConsumption.getData("https://www.omdbapi.com/?t=gilmore+girls&season=1&episode=2&apikey=6585022c");
+		DataEpe dadosEpisodios = conversor.getData(json, DataEpe.class);
+		System.out.println("Dados formatados dos episodios " + dadosEpisodios );
+
 	}
 }
